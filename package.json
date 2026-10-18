@@ -1,0 +1,22 @@
+{
+  "name": "cityscape-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for the CityScape Rentals AI Booking API — availability, itemized quotes, and booking of Downtown Toronto condos.",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/index.js",
+    "start:http": "node dist/http.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "keywords": ["mcp", "model-context-protocol", "travel", "bookings", "toronto"],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.9.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}
