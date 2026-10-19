@@ -116,15 +116,6 @@ const CORS_HEADERS: Record<string, string> = {
 };
 
 async function main(): Promise<void> {
-  const server = createCityscapeServer();
-  // Stateless mode: no session tracking. A stateful transport (with a
-  // sessionIdGenerator) rejects any second `initialize` request with "Server
-  // already initialized", which breaks directory health-checkers like Glama
-  // that open a fresh MCP connection every hour. Stateless mode lets every
-  // request (including repeated `initialize`) succeed.
-  const transport = new StreamableHTTPServerTransport({});
-  await server.connect(transport);
-
   const http = createServer(async (req, res) => {
     for (const [k, v] of Object.entries(CORS_HEADERS)) {
       res.setHeader(k, v);
@@ -160,6 +151,15 @@ async function main(): Promise<void> {
       }
     }
 
+    // Stateless mode: a fresh server + transport per request. The SDK allows
+    // only ONE transport per Protocol instance, and a stateful transport
+    // rejects any second `initialize` ("Server already initialized") — which
+    // breaks directory health-checkers like Glama that open a fresh MCP
+    // connection every hour. Creating a fresh stateless server per request
+    // makes every request (including repeated `initialize`) independent.
+    const server = createCityscapeServer();
+    const transport = new StreamableHTTPServerTransport({});
+    await server.connect(transport);
     try {
       await transport.handleRequest(req, res);
     } catch (e) {
