@@ -1,5 +1,4 @@
 import { createServer } from 'node:http';
-import { randomUUID } from 'node:crypto';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { API_BASE, createCityscapeServer } from './server.js';
 
@@ -118,9 +117,12 @@ const CORS_HEADERS: Record<string, string> = {
 
 async function main(): Promise<void> {
   const server = createCityscapeServer();
-  const transport = new StreamableHTTPServerTransport({
-    sessionIdGenerator: () => randomUUID(),
-  });
+  // Stateless mode: no session tracking. A stateful transport (with a
+  // sessionIdGenerator) rejects any second `initialize` request with "Server
+  // already initialized", which breaks directory health-checkers like Glama
+  // that open a fresh MCP connection every hour. Stateless mode lets every
+  // request (including repeated `initialize`) succeed.
+  const transport = new StreamableHTTPServerTransport({});
   await server.connect(transport);
 
   const http = createServer(async (req, res) => {
