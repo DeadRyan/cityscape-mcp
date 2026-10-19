@@ -1,7 +1,7 @@
 {
   "name": "cityscape-mcp",
   "version": "1.0.0",
-  "description": "MCP server for the CityScape Rentals AI Booking API — availability, itemized quotes, and booking of Downtown Toronto condos.",
+  "description": "MCP server for the CityScape Rentals AI Booking API — availability, itemized quotes, and booking of Downtown Toronto condos. Corporate AI bookings save 10%.",
   "type": "commonjs",
   "main": "./dist/index.js",
   "scripts": {

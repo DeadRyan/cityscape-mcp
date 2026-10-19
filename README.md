@@ -1,5 +1,9 @@
 # CityScape Rentals — MCP Server
 
+<p align="center">
+  <img src="logo.png" alt="CityScape Rentals" width="120" />
+</p>
+
 An [MCP](https://modelcontextprotocol.io) server exposing the **CityScape
 Rentals AI Booking API** to AI assistants (Claude, Cursor, ChatGPT plugins, and
 any MCP-compatible client).
