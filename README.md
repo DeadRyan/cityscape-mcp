@@ -4,6 +4,8 @@
   <img src="logo.png" alt="CityScape Rentals" width="120" />
 </p>
 
+[![CityScape Condo Rentals MCP MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/rentals.cityscape.api/city-scape-condo-rentals-mcp/badges/score.svg)](https://glama.ai/mcp/connectors/rentals.cityscape.api/city-scape-condo-rentals-mcp)
+
 An [MCP](https://modelcontextprotocol.io) server exposing the **CityScape
 Rentals AI Booking API** to AI assistants (Claude, Cursor, ChatGPT plugins, and
 any MCP-compatible client).
